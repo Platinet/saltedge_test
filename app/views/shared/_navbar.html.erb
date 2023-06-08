@@ -27,7 +27,7 @@
       </ul>
       <div class="text-end">
         <% if current_user %>
-          <a class="btn btn-outline-light me-2" href="<%= destroy_user_session_path %>">Logout</a>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-light me-2" %>
         <% else %>
           <a class="btn btn-outline-light me-2" href="<%= new_user_session_path %>">Login</a>
           <a class="btn btn-warning" href="<%= new_user_registration_path %>">Sign-up</a>
