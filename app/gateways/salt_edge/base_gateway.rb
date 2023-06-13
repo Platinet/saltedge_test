@@ -31,6 +31,26 @@ module SaltEdge
       parse_response(response)
     end
 
+    def put(path, data)
+      uri = uri_for_path(path)
+      use_ssl = uri.scheme == "https"
+      opts = {use_ssl: use_ssl}
+      response = Net::HTTP.start(uri.hostname, uri.port, opts) do |http|
+        http.put(uri, data.to_json, DEFAULT_HEADERS)
+      end
+      parse_response(response)
+    end
+
+    def delete(path)
+      uri = uri_for_path(path)
+      use_ssl = uri.scheme == "https"
+      opts = {use_ssl: use_ssl}
+      response = Net::HTTP.start(uri.hostname, uri.port, opts) do |http|
+        http.delete(uri, DEFAULT_HEADERS)
+      end
+      parse_response(response)
+    end
+
     private
 
     def parse_response(response)

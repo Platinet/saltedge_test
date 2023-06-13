@@ -46,6 +46,8 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem "devise"
+gem "sidekiq"
+gem "sidekiq-cron"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -57,6 +59,8 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "dotenv-rails", groups: [:development, :test]
+  gem "rspec-rails", "~> 6.0.0"
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -75,4 +79,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "webmock"
 end

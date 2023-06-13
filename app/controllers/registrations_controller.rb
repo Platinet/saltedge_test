@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
       if customer.has_key?(:error)
         flash[:alert] = "API Error: " + customer[:error][:message]
       else
-        user.create_customer(customer)
+        user.create_customer(customer.merge(remote_id: customer.delete(:id)))
       end
     end
   end

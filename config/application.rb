@@ -26,5 +26,7 @@ module SaltedgeTest
 
     config.salt_edge_app_id = ENV.fetch("SALT_EDGE_APP_ID")
     config.salt_edge_secret = ENV.fetch("SALT_EDGE_SECRET")
+    config.callback_user_name = ENV.fetch("CALLBACK_USER_NAME")
+    config.callback_user_password = ENV.fetch("CALLBACK_USER_PASSWORD")
   end
 end
