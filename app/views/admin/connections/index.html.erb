@@ -1,0 +1,28 @@
+<h1>All Connections</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Customer ID</th>
+    <th scope="col">Country Code</th>
+    <th scope="col">Provider Name</th>
+    <th scope="col">Status</th>
+    <th scope="col">Removed</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @connections.each do |connection| %>
+    <tr>
+      <th scope="row"><%= connection.id %></th>
+      <td><%= connection.customer_id %></td>
+      <td><%= connection.country_code %></td>
+      <td><%= connection.provider_name %></td>
+      <td><%= connection.status %></td>
+      <td><%= connection.removed %></td>
+      <td><%= link_to("Show", admin_connection_path(connection.id)) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

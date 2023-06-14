@@ -8,4 +8,12 @@ Rails.application.routes.draw do
   resources :home, only: :index
   resources :customers, only: :create
   resources :connect_sessions, only: :create
+  resources :connections, only: [:index, :destroy] do
+    put "refresh", on: :member
+    put "reconnect", on: :member
+  end
+
+  namespace :admin do
+    resources :connections, only: [:index, :show]
+  end
 end
