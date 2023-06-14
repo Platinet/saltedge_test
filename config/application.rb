@@ -6,6 +6,11 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Load dotenv only in development or test environment
+if %w[development test].include? ENV["RAILS_ENV"]
+  Dotenv::Railtie.load
+end
+
 module SaltedgeTest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -18,5 +23,10 @@ module SaltedgeTest
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.salt_edge_app_id = ENV.fetch("SALT_EDGE_APP_ID")
+    config.salt_edge_secret = ENV.fetch("SALT_EDGE_SECRET")
+    config.callback_user_name = ENV.fetch("CALLBACK_USER_NAME")
+    config.callback_user_password = ENV.fetch("CALLBACK_USER_PASSWORD")
   end
 end

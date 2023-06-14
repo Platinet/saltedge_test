@@ -1,7 +1,30 @@
 Rails.application.routes.draw do
-  devise_for :users
+  default_url_options host: "localhost:3000"
+  devise_for :users, controllers: {registrations: "registrations"}
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   root "home#index"
+  resources :home, only: :index
+  resources :customers, only: :create
+  resources :connect_sessions, only: :create
+  resources :connections, only: [:index, :destroy] do
+    put "refresh", on: :member
+    put "reconnect", on: :member
+    resources :accounts, only: :index do
+      resources :transactions, only: :index
+    end
+  end
+
+  namespace :admin do
+    resources :connections, only: [:index, :show]
+    resources :accounts, only: [:index, :show]
+    resources :transactions, only: [:index, :show]
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :connections, only: :create
+    end
+  end
 end

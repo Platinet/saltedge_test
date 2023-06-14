@@ -1,0 +1,16 @@
+<div class="col-sm-4 mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= @transaction.id %></h5>
+      <h6 class="card-subtitle mb-2 text-muted">Duplicated: <%= @transaction.duplicated %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Id: <%= @transaction.remote_id %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Mode: <%= @transaction.mode %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Status: <%= @transaction.status %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Made on: <%= @transaction.made_on %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Amount: <%= @transaction.amount %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Currency: <%= @transaction.currency_code %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Description: <%= @transaction.description %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Category: <%= @transaction.category %></h6>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="col-sm-4 mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= connection.provider_name %></h5>
+      <% if connection.removed %>
+        <h6 class="card-subtitle mb-2 text-muted">Removed</h6>
+      <% else %>
+        <h6 class="card-subtitle mb-2 text-muted">Code: <%= connection.provider_code %></h6>
+        <h6 class="card-subtitle mb-2 text-muted">Id: <%= connection.remote_id %></h6>
+        <h6 class="card-subtitle mb-2 text-muted">Status: <%= connection.status %></h6>
+        <%= link_to("Accounts", connection_accounts_path(connection_id: connection.id), class: "card-link") %>
+        <%= link_to("Accounts Remote", connection_accounts_path(connection_id: connection.id, fetch_remote: true), class: "card-link") %>
+        <p class="card-text">Next refresh possible at: <%= connection.next_refresh_possible_at&.strftime("%m/%d/%Y at %I:%M%p") %></p>
+        <% if connection.next_refresh_possible_at && Time.current > connection.next_refresh_possible_at %>
+          <%= button_to("Refresh", refresh_connection_path(connection), method: :put, class: "btn btn-primary") %>
+        <% end %>
+        <%= button_to("Reconnect", reconnect_connection_path(connection), method: :put, class: "btn btn-success mt-2") %>
+        <%= button_to("Remove", connection_path(connection), method: :delete, class: "btn btn-danger mt-2") %>
+      <% end %>
+    </div>
+  </div>
+</div>

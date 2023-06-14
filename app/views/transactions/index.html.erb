@@ -1,0 +1,32 @@
+<h1>Transactions for account</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Duplicated</th>
+    <th scope="col">Mode</th>
+    <th scope="col">Status</th>
+    <th scope="col">Made On</th>
+    <th scope="col">Amount</th>
+    <th scope="col">Currency</th>
+    <th scope="col">Description</th>
+    <th scope="col">Category</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @transactions.each do |transaction| %>
+    <tr>
+      <th scope="row"><%= transaction.id %></th>
+      <td><%= transaction.duplicated %></td>
+      <td><%= transaction.mode %></td>
+      <td><%= transaction.status %></td>
+      <td><%= transaction.made_on %></td>
+      <td><%= transaction.amount %></td>
+      <td><%= transaction.currency_code %></td>
+      <td><%= transaction.description %></td>
+      <td><%= transaction.category %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
