@@ -21,5 +21,10 @@ Rails.application.routes.draw do
     resources :accounts, only: [:index, :show]
     resources :transactions, only: [:index, :show]
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :connections, only: :create
+    end
   end
 end
