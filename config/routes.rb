@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   root "home#index"
   resources :home, only: :index
   resources :customers, only: :create
+  resources :connect_sessions, only: :create
 end
