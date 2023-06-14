@@ -1,16 +1,4 @@
-<div class="col-sm-4 mt-4">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title"><%= @account.name %></h5>
-      <h6 class="card-subtitle mb-2 text-muted">Nature: <%= @account.nature %></h6>
-      <h6 class="card-subtitle mb-2 text-muted">Id: <%= @account.remote_id %></h6>
-      <h6 class="card-subtitle mb-2 text-muted">Balance: <%= @account.balance %></h6>
-      <h6 class="card-subtitle mb-2 text-muted">Currency: <%= @account.currency_code %></h6>
-    </div>
-  </div>
-</div>
-
-<h1>Transactions</h1>
+<h1>Transactions for account</h1>
 
 <table class="table">
   <thead>
@@ -20,19 +8,21 @@
     <th scope="col">Mode</th>
     <th scope="col">Status</th>
     <th scope="col">Made On</th>
+    <th scope="col">Amount</th>
     <th scope="col">Currency</th>
     <th scope="col">Description</th>
     <th scope="col">Category</th>
   </tr>
   </thead>
   <tbody>
-  <% @account.transactions.each do |transaction| %>
+  <% @transactions.each do |transaction| %>
     <tr>
       <th scope="row"><%= transaction.id %></th>
       <td><%= transaction.duplicated %></td>
       <td><%= transaction.mode %></td>
       <td><%= transaction.status %></td>
       <td><%= transaction.made_on %></td>
+      <td><%= transaction.amount %></td>
       <td><%= transaction.currency_code %></td>
       <td><%= transaction.description %></td>
       <td><%= transaction.category %></td>

@@ -1,1 +1,50 @@
-<h1>Welcome, this is the home page</h1>
+<h1>Welcome, <%= current_user.email %></h1>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Customer info</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Id: <%= @customer&.remote_id %></h6>
+        <p class="card-text">Blocked: <%= @customer&.blocked_at ? @customer.blocked_at : "False" %></p>
+        <% unless @customer %>
+          <%= button_to("Create customer", customers_path, method: :post, class: "btn btn-primary") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Connect to bank systems</h5>
+        <% if @customer %>
+          <% if @connect_session%>
+            <p class="card-text">Expired at: <%= @connect_session.expires_at.strftime("%m/%d/%Y at %I:%M%p") %></p>
+            <%= link_to("Open bank systems", @connect_session.connect_url, class: "btn btn-primary") %>
+          <% else %>
+            <p class="card-text">Create new session</p>
+            <%= button_to("Create", connect_sessions_path, method: :post, class: "btn btn-primary") %>
+          <% end %>
+        <% else %>
+          <p class="card-text">No customer...</p>
+          <a href="#" class="btn btn-primary disabled">Create</a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Fetch connections</h5>
+        <p class="card-text">Fetch all connections</p>
+        <%= link_to("Fetch", connections_path(fetch_remote: true), method: :post, class: "btn btn-primary") %>
+      </div>
+    </div>
+  </div>
+</div>
+<% @connections.each do |connection| %>
+  <%= render "connections/entity", connection: connection %>
+<% end %>

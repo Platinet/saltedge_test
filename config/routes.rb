@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :connections, only: [:index, :show]
     resources :accounts, only: [:index, :show]
+    resources :transactions, only: [:index, :show]
+  end
   end
 end
