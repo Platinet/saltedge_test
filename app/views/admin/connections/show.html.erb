@@ -9,3 +9,29 @@
   </div>
 </div>
 
+<h3>Accounts for connection <%= @connection.remote_id %></h3>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Nature</th>
+    <th scope="col">Balance</th>
+    <th scope="col">Currency</th>
+    <th scope="col">Transactions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @connection.accounts.each do |account| %>
+    <tr>
+      <th scope="row"><%= account.id %></th>
+      <td><%= account.name %></td>
+      <td><%= account.nature %></td>
+      <td><%= account.balance %></td>
+      <td><%= account.currency_code %></td>
+      <td><%= link_to("Open", connection_account_transactions_path(connection_id: @connection.id, account_id: account.id)) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

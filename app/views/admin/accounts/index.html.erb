@@ -1,0 +1,26 @@
+<h1>All Accounts</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Nature</th>
+    <th scope="col">Balance</th>
+    <th scope="col">Currency</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @accounts.each do |account| %>
+    <tr>
+      <th scope="row"><%= account.id %></th>
+      <td><%= account.name %></td>
+      <td><%= account.nature %></td>
+      <td><%= account.balance %></td>
+      <td><%= account.currency_code %></td>
+      <td><%= link_to("Open", admin_account_path(account)) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

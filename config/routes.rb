@@ -11,9 +11,13 @@ Rails.application.routes.draw do
   resources :connections, only: [:index, :destroy] do
     put "refresh", on: :member
     put "reconnect", on: :member
+    resources :accounts, only: :index do
+      resources :transactions, only: :index
+    end
   end
 
   namespace :admin do
     resources :connections, only: [:index, :show]
+    resources :accounts, only: [:index, :show]
   end
 end
